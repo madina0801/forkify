@@ -1,3 +1,5 @@
+import * as model from './model.js';
+
 import icons from '../img/icons.svg'; // Parcel 2
 import 'core-js/stable'; // Polyfill everything except for async/await
 import 'regenerator-runtime/runtime'; // Polyfill async/await
@@ -32,30 +34,10 @@ const renderSpinner = function(parentEl) {
 const showRecipe = async function () {
   try {
     const id = window.location.hash.slice(1);
-
     if(!id) return;
     // 1. Loading recipe
     renderSpinner(recipeContainer);
-    const res = await fetch(
-      `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
-    );
-    const data = await res.json();
-    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-
-    let { recipe } = data.data;
-    recipe = {
-      id: recipe.id,
-      title: recipe.title,
-      publisher: recipe.publisher,
-      sourceUrl: recipe.source_url,
-      image: recipe.image_url,
-      servings: recipe.servings,
-      cookingTime: recipe.cooking_time,
-      ingredients: recipe.ingredients,
-    };
-
-    console.log(recipe);
-
+    await model.loadRecipe(id);
     // 2. Rendering a recipe
     const markup = `
     <figure class="recipe__fig">
