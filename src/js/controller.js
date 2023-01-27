@@ -6,13 +6,6 @@ import 'regenerator-runtime/runtime'; // Polyfill async/await
 
 const recipeContainer = document.querySelector('.recipe');
 
-const timeout = function (s) {
-  return new Promise(function (_, reject) {
-    setTimeout(function () {
-      reject(new Error(`Request took too long! Timeout after ${s} second`));
-    }, s * 1000);
-  });
-};
 
 // https://forkify-api.herokuapp.com/v2
 // API key - 5bb2f643-2fc0-48d9-b6dc-3d10b21632cc
