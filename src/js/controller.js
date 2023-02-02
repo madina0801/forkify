@@ -2,6 +2,8 @@ import * as model from './model.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultView from './views/resultView.js'
+import paginationView from './views/paginationView.js';
+
 
 import 'core-js/stable'; // Polyfill everything except for async/await
 import 'regenerator-runtime/runtime'; // Polyfill async/await
@@ -42,7 +44,11 @@ const controlSearchResults = async function() {
     await model.loadSearchResults(query);
 
     // 3. Render results
-    resultView.render(model.getSearchResultsPage())
+    // resultView.render(model.getSearchResultsPage());
+    resultView.render(model.getSearchResultsPage(1));
+
+    // 4. Render initial pagination buttons
+    paginationView.render(model.state.search);
     // resultView.render(model.state.search.results);
   } catch(err) {
     console.log(err);
