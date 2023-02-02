@@ -45,7 +45,7 @@ const controlSearchResults = async function() {
 
     // 3. Render results
     // resultView.render(model.getSearchResultsPage());
-    resultView.render(model.getSearchResultsPage(1));
+    resultView.render(model.getSearchResultsPage(6));
 
     // 4. Render initial pagination buttons
     paginationView.render(model.state.search);
