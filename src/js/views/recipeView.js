@@ -1,8 +1,6 @@
 import View from './View.js';
 import icons from '../../img/icons.svg'; // Parcel 2
 import { numberToFraction } from '../helpers.js';
-ele.quantity ? numberToFraction(ele.quantity).toString() : '' 
-
 
 class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
@@ -34,11 +32,9 @@ class RecipeView extends View {
   }
 
   _generateMarkup() {
-		return `
+    return `
 		  <figure class="recipe__fig">
-			<img src="${this._data.image}" alt="${
-		  this._data.title
-		}" class="recipe__img" />
+			<img src="${this._data.image}" alt="${this._data.title}" class="recipe__img" />
 			<h1 class="recipe__title">
 			  <span>${this._data.title}</span>
 			</h1>
@@ -49,8 +45,8 @@ class RecipeView extends View {
 				<use href="${icons}#icon-clock"></use>
 			  </svg>
 			  <span class="recipe__info-data recipe__info-data--minutes">${
-				this._data.cookingTime
-			  }</span>
+          this._data.cookingTime
+        }</span>
 			  <span class="recipe__info-text">minutes</span>
 			</div>
 			<div class="recipe__info">
@@ -58,20 +54,20 @@ class RecipeView extends View {
 				<use href="${icons}#icon-users"></use>
 			  </svg>
 			  <span class="recipe__info-data recipe__info-data--people">${
-				this._data.servings
-			  }</span>
+          this._data.servings
+        }</span>
 			  <span class="recipe__info-text">servings</span>
 			  <div class="recipe__info-buttons">
 				<button class="btn--tiny btn--update-servings" data-update-to="${
-				  this._data.servings - 1
-				}">
+          this._data.servings - 1
+        }">
 				  <svg>
 					<use href="${icons}#icon-minus-circle"></use>
 				  </svg>
 				</button>
 				<button class="btn--tiny btn--update-servings" data-update-to="${
-				  this._data.servings + 1
-				}">
+          this._data.servings + 1
+        }">
 				  <svg>
 					<use href="${icons}#icon-plus-circle"></use>
 				  </svg>
@@ -85,9 +81,7 @@ class RecipeView extends View {
 			</div>
 			<button class="btn--round btn--bookmark">
 			  <svg class="">
-				<use href="${icons}#icon-bookmark${
-		  this._data.bookmarked ? '-fill' : ''
-		}"></use>
+				<use href="${icons}#icon-bookmark${this._data.bookmarked ? '-fill' : ''}"></use>
 			  </svg>
 			</button>
 		  </div>
@@ -101,8 +95,8 @@ class RecipeView extends View {
 			<p class="recipe__directions-text">
 			  This recipe was carefully designed and tested by
 			  <span class="recipe__publisher">${
-				this._data.publisher
-			  }</span>. Please check out
+          this._data.publisher
+        }</span>. Please check out
 			  directions at their website.
 			</p>
 			<a
@@ -116,7 +110,7 @@ class RecipeView extends View {
 			  </svg>
 			</a>
 		  </div>
-		`;	
+		`;
   }
 
   _generateMarkupIngredient(ing) {
@@ -125,7 +119,7 @@ class RecipeView extends View {
 		<use href="${icons}#icon-check"></use>
 </svg>
 <div class="recipe__quantity">${
-      ing.quantity ? new Fraction(ing.quantity).toString() : ''
+      ing.quantity ? numberToFraction(ing.quantity).toString() : ''
     }</div>
 <div class="recipe__description">
 		<span class="recipe__unit">${ing.unit}</span>
